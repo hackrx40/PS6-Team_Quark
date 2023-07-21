@@ -50,11 +50,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:id="@+id/commbtn"
             android:padding="10dp"
-            android:src="@drawable/heart"/>
+            android:src="@drawable/car"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
         app:layout_anchor="@id/navigation_bar"
         android:tint="@color/white"
         android:backgroundTint="@color/white"
-        android:src="@drawable/plus"
+        android:src="@drawable/play"
         app:maxImageSize="50dp"
         android:contentDescription="TODO" />
 
