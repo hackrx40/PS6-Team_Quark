@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.drive_fit_.R;
+import com.example.drive_fit_.fragmentclass.Bazaar;
+import com.example.drive_fit_.fragmentclass.Community;
+import com.example.drive_fit_.fragmentclass.Home;
+import com.example.drive_fit_.fragmentclass.Profile;
 
 public class MainActivity extends AppCompatActivity {
 
