@@ -226,6 +226,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:text="Fitness Index : "
+                    android:fontFamily="@font/poppins_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:textColor="#031160"
+                    android:text="189"
+                    android:fontFamily="@font/poppins_bold"/>
+
 
             </LinearLayout>
 
@@ -408,10 +427,6 @@
 
 
             </LinearLayout>
-
-
-
-
 
 
             <LinearLayout
