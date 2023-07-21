@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView communitybtn = (ImageView) findViewById(R.id.commbtn);
         ImageView userbtn = (ImageView) findViewById(R.id.userbtn);
 
+        int soumen = 0;
+
         FragmentManager m = getSupportFragmentManager();
         FragmentTransaction t = m.beginTransaction();
         Fragment Home = new Home();
