@@ -16,6 +16,11 @@
         <activity
             android:name=".activityclass.OnboardingScreen"
             android:exported="false" />
+        <activity android:name=".activityclass.Rewards"
+            android:exported="false"/>
+
+        <activity android:name=".activityclass.StartDrive"
+            android:exported="false"/>
         <activity
             android:name=".activityclass.MainActivity"
             android:exported="true">
