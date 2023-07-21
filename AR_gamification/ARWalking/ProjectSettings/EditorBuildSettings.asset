@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/PushUp.unity
+    guid: f9cb76f2465f5e5459fc5042f66ac8d9
+  - enabled: 0
     path: Assets/Mapbox/Examples/0_PrefabScenes/Location-basedGame.unity
     guid: 42f6aa7ce7a604f16ade319663f46ceb
+  - enabled: 0
+    path: Assets/Scenes/ARScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b97c6840605b86646864b09eecad0b54,
-      type: 2}
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: cf62f3e73bfb51d429c2802a65cae8c1, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 73dc3fe78e81ccf49861f8d70d395185, type: 2}
