@@ -79,6 +79,20 @@ public class DistanceController : MonoBehaviour
         reward_dist = reward_dist + (int)Random.Range((reward_dist * 0.7f), (reward_dist * 0.8f));
         Debug.Log(reward_dist);
     }
+    
+    void RewardHandler()
+    {
+        if (int_distance >= reward_dist - 10 && int_distance <= reward_dist + 10)      
+        {
+            ChangeRewardDist();
+            Vector3 loc = new Vector3();
+            loc.x = position.x + Random.Range(0.5f, 0.8f);
+            loc.z = position.z + Random.Range(0.5f, 0.8f);
+            Instantiate(chest_reward, new Vector3(loc.x, 3.0f, loc.z), Quaternion.identity);
+            Instantiate(spotLight, new Vector3(loc.x, 0.7f, loc.z), Quaternion.identity);
+        }
+    }
+
 
    
 }
