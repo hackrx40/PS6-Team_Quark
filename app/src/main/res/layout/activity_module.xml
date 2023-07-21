@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activityclass.module">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="match_parent"
+        android:id="@+id/fragmodule"
+        android:layout_above="@id/pages"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/pages"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="0dp">
+
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:padding="20dp"
+            android:rotation="180"
+            android:src="@drawable/rightarrow" />
+
+        <ImageView
+            android:id="@+id/mark1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/onboarding_mark" />
+
+        <ImageView
+            android:id="@+id/mark2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/onboarding_markoutline" />
+
+        <ImageView
+            android:id="@+id/mark3"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/onboarding_markoutline" />
+
+
+
+        <ImageView
+            android:id="@+id/nextbtn"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:padding="20dp"
+            android:src="@drawable/rightarrow" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
