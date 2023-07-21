@@ -14,6 +14,7 @@ import com.example.drive_fit_.fragmentclass.Bazaar;
 import com.example.drive_fit_.fragmentclass.Community;
 import com.example.drive_fit_.fragmentclass.Home;
 import com.example.drive_fit_.fragmentclass.Profile;
+import com.example.drive_fit_.fragmentclass.drive_dashboard;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView communitybtn = (ImageView) findViewById(R.id.commbtn);
         ImageView userbtn = (ImageView) findViewById(R.id.userbtn);
 
-        int soumen = 0;
+        int soumen = 9;
 
         FragmentManager m = getSupportFragmentManager();
         FragmentTransaction t = m.beginTransaction();
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 t.commit();
                 homebtn.setImageResource(R.drawable.homecolor);
                 bazaarbtn.setImageResource(R.drawable.shopoutline);
-                communitybtn.setImageResource(R.drawable.heart);
+                communitybtn.setImageResource(R.drawable.car);
                 userbtn.setImageResource(R.drawable.useroutline);
             }
         });
@@ -56,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager m = getSupportFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                Fragment community = new Community();
+                Fragment community = new drive_dashboard();
                 t.replace(R.id.fragment, community);
                 t.commit();
                 homebtn.setImageResource(R.drawable.homeoutline);
                 bazaarbtn.setImageResource(R.drawable.shopoutline);
-                communitybtn.setImageResource(R.drawable.like);
+                communitybtn.setImageResource(R.drawable.car);
                 userbtn.setImageResource(R.drawable.useroutline);
             }
         });
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 t.commit();
                 homebtn.setImageResource(R.drawable.homeoutline);
                 bazaarbtn.setImageResource(R.drawable.shopcolor);
-                communitybtn.setImageResource(R.drawable.heart);
+                communitybtn.setImageResource(R.drawable.car);
                 userbtn.setImageResource(R.drawable.useroutline);
             }
         });
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 t.commit();
                 homebtn.setImageResource(R.drawable.homeoutline);
                 bazaarbtn.setImageResource(R.drawable.shopoutline);
-                communitybtn.setImageResource(R.drawable.heart);
+                communitybtn.setImageResource(R.drawable.car);
                 userbtn.setImageResource(R.drawable.usercolor);
             }
         });

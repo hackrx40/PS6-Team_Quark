@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063550556337",
+    "project_id": "drivefit-2f260",
+    "storage_bucket": "drivefit-2f260.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063550556337:android:157e05fed1789a7449ea90",
+        "android_client_info": {
+          "package_name": "com.example.drive_fit_"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063550556337-pqqmb5b9bil4q5kbv7qrb6ndn6tvqoka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9gMPrybS-u8jsvNupIMEzss0KP3hxAaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063550556337-pqqmb5b9bil4q5kbv7qrb6ndn6tvqoka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

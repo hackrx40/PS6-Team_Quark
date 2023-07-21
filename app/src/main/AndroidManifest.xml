@@ -14,8 +14,16 @@
         android:theme="@style/Theme.Drive_Fit_"
         tools:targetApi="31">
         <activity
+            android:name=".activityclass.module"
+            android:exported="false" />
+        <activity
             android:name=".activityclass.OnboardingScreen"
             android:exported="false" />
+        <activity android:name=".activityclass.Rewards"
+            android:exported="false"/>
+
+        <activity android:name=".activityclass.StartDrive"
+            android:exported="false"/>
         <activity
             android:name=".activityclass.MainActivity"
             android:exported="true">
