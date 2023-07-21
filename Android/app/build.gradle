@@ -3,15 +3,17 @@ plugins {
 }
 
 android {
-    namespace 'com.example.drive_fit_'
-    compileSdk 33
+    compileSdkVersion 32
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.drive_fit_"
-        minSdk 24
-        targetSdk 33
+        minSdkVersion 21
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +31,7 @@ android {
 }
 
 dependencies {
+
 
     implementation 'com.opencsv:opencsv:5.5.2'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -54,5 +57,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.android.support:multidex:1.0.3'
+
+
 
 }
