@@ -7,7 +7,6 @@
 	using System.IO;
 	using System.Text;
 	using Mapbox.Utils;
-    using UnityEngine.UI;
 
 	public class DeviceLocationProviderAndroidNative : AbstractLocationProvider, IDisposable
 	{
@@ -92,7 +91,6 @@
 			}
 		}
 
-        public Text txt;
 
 		protected virtual void OnDestroy() { shutdown(); }
 
@@ -101,7 +99,6 @@
 
 		protected virtual void Awake()
 		{
-            txt.text = "Enabled";
 			// safe measures to not run when disabled or not selected as location provider
 			if (!enabled) { return; }
 			if (!transform.gameObject.activeInHierarchy) { return; }
