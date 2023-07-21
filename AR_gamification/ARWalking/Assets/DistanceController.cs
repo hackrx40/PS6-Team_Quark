@@ -74,6 +74,11 @@ public class DistanceController : MonoBehaviour
                     ((position_list[a].y - position_list[b].y) * (position_list[a].y - position_list[b].y)) +
                     ((position_list[a].z - position_list[b].z) * (position_list[a].z - position_list[b].z)));
     }
+    void ChangeRewardDist()                                             
+    {
+        reward_dist = reward_dist + (int)Random.Range((reward_dist * 0.7f), (reward_dist * 0.8f));
+        Debug.Log(reward_dist);
+    }
 
    
 }
