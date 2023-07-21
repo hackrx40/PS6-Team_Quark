@@ -78,6 +78,9 @@ public class Bazaar extends Fragment {
     private BarChart barChart;
     private LineChart lineChart;
 
+    private BarChart barcharttime;
+    private BarChart barChartheart;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,6 +98,86 @@ public class Bazaar extends Fragment {
 
 
         barChart = v.findViewById(R.id.barChart);
+
+        barcharttime = v.findViewById(R.id.barcharthours);
+        List<BarEntry> entriestime = new ArrayList<>();
+        entriestime.add(new BarEntry(0f, 500f));
+        entriestime.add(new BarEntry(1f, 750f));
+        entriestime.add(new BarEntry(2f, 1000f));
+        BarDataSet dataSettime = new BarDataSet(entriestime, "Bar Data Set");
+        dataSettime.setColors(new int[]{Color.parseColor("#CDDC39"),Color.parseColor("#FFC107"), Color.parseColor("#FF5722")});
+        //dataSet.setBarRadius(15f);
+
+        BarData barDatatime = new BarData(dataSettime);
+        barDatatime.setBarWidth(0.5f);
+
+        barcharttime.setData(barDatatime);
+        barcharttime.setDrawGridBackground(false);
+        barcharttime.getDescription().setEnabled(false);
+        barcharttime.getLegend().setEnabled(false);
+        barcharttime.setTouchEnabled(false);
+
+        XAxis xAxistime = barcharttime.getXAxis();
+        xAxistime.setGranularity(1f);
+        xAxistime.setDrawAxisLine(false);
+        xAxistime.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxistime.setDrawGridLines(false);
+        xAxistime.setAxisMaximum(3.5f); // Adjust maximum value on x-axis
+        xAxistime.setAxisMinimum(-0.5f);
+
+        YAxis leftAxistime = barcharttime.getAxisLeft();
+        leftAxistime.setDrawAxisLine(false);
+        leftAxistime.setDrawGridLines(false);
+        leftAxistime.setAxisMinimum(0f);
+        leftAxistime.setAxisMaximum(1000f); // Adjust maximum value on y-axis
+
+        YAxis rightAxistime = barcharttime.getAxisRight();
+        rightAxistime.setDrawAxisLine(false);
+        rightAxistime.setDrawGridLines(false);
+        rightAxistime.setDrawLabels(false);
+
+        barcharttime.invalidate();
+
+
+        barChartheart = v.findViewById(R.id.barChartheart);
+        List<BarEntry> entriesheart = new ArrayList<>();
+        entriesheart.add(new BarEntry(0f, 500f));
+        entriesheart.add(new BarEntry(1f, 750f));
+        entriesheart.add(new BarEntry(2f, 1000f));
+        BarDataSet dataSetheart = new BarDataSet(entriesheart, "Bar Data Set");
+        dataSetheart.setColors(new int[]{Color.parseColor("#CDDC39"),Color.parseColor("#FFC107"), Color.parseColor("#FF5722")});
+        //dataSet.setBarRadius(15f);
+
+        BarData barDataheart = new BarData(dataSetheart);
+        barDataheart.setBarWidth(0.5f);
+
+        barChartheart.setData(barDataheart);
+        barChartheart.setDrawGridBackground(false);
+        barChartheart.getDescription().setEnabled(false);
+        barChartheart.getLegend().setEnabled(false);
+        barChartheart.setTouchEnabled(false);
+
+        XAxis xAxisheart = barChartheart.getXAxis();
+        xAxisheart.setGranularity(1f);
+        xAxisheart.setDrawAxisLine(false);
+        xAxisheart.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxisheart.setDrawGridLines(false);
+        xAxisheart.setAxisMaximum(3.5f); // Adjust maximum value on x-axis
+        xAxisheart.setAxisMinimum(-0.5f);
+
+        YAxis leftAxisheart = barChartheart.getAxisLeft();
+        leftAxisheart.setDrawAxisLine(false);
+        leftAxisheart.setDrawGridLines(false);
+        leftAxisheart.setAxisMinimum(0f);
+        leftAxisheart.setAxisMaximum(1000f); // Adjust maximum value on y-axis
+
+        YAxis rightAxisheart = barChartheart.getAxisRight();
+        rightAxisheart.setDrawAxisLine(false);
+        rightAxisheart.setDrawGridLines(false);
+        rightAxisheart.setDrawLabels(false);
+
+        barChartheart.invalidate();
+
 
         List<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0f, 500f));
