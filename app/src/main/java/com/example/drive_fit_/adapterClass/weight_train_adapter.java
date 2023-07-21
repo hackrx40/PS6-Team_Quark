@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.drive_fit_.R;
 import com.example.drive_fit_.activityclass.module;
 import com.example.drive_fit_.modelClass.weight_train;
+import com.example.drive_fit_.modelClass.workout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -22,11 +25,14 @@ public class weight_train_adapter extends RecyclerView.Adapter<weight_train_adap
 
     public ArrayList<weight_train> data;
     public Context context;
+    public ArrayList<workout> list;
 
 
-    public weight_train_adapter(ArrayList<weight_train> data, Context context) {
+
+    public weight_train_adapter(ArrayList<weight_train> data, Context context, ArrayList<workout> list) {
         this.data = data;
         this.context = context;
+        this.list = list;
     }
 
 
@@ -43,10 +49,13 @@ public class weight_train_adapter extends RecyclerView.Adapter<weight_train_adap
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
-        holder.exerpic.setImageResource(data.get(position).getExercisepic());
-        holder.exername.setText(data.get(position).getExercisename());
+        Toast.makeText(context,list.size()+"",Toast.LENGTH_SHORT).show();
 
-        if(position == 2)
+        //holder.exerpic.setImageResource(list.get(position).getLink());
+        Picasso.get().load(list.get(position).getLink().toString()).into(holder.exerpic);
+        holder.exername.setText(list.get(position).getName());
+
+        if(true)
         {
             holder.exerpic.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,7 +93,7 @@ public class weight_train_adapter extends RecyclerView.Adapter<weight_train_adap
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return list.size();
     }
 
     static class myviewholder extends RecyclerView.ViewHolder

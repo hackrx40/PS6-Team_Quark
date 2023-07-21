@@ -2,19 +2,28 @@ package com.example.drive_fit_.fragmentclass;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.drive_fit_.R;
 import com.example.drive_fit_.adapterClass.weight_train_adapter;
 import com.example.drive_fit_.adapterClass.yoga_adapter;
 import com.example.drive_fit_.modelClass.weight_train;
+import com.example.drive_fit_.modelClass.workout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mig35.carousellayoutmanager.CenterScrollListener;
 
 import java.util.ArrayList;
@@ -90,7 +99,8 @@ public class Home extends Fragment {
         weight_recycle = (RecyclerView) v.findViewById(R.id.homeworkout_recycler);
         snap.attachToRecyclerView(weight_recycle);
 
-        adapter = new weight_train_adapter(dataque_task(), getContext());
+        ArrayList<workout> data = new ArrayList<>();
+        adapter = new weight_train_adapter(dataque_task(), getContext(), data);
 
         /*weight_recycle.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -131,6 +141,41 @@ public class Home extends Fragment {
         //final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         // weight_recycle.setLayoutManager(layoutManager);
         // weight_recycle.setHasFixedSize(true);
+
+
+
+        DatabaseReference databaseReferences = FirebaseDatabase.getInstance().getReference("homeWorkout");
+        databaseReferences.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Log.d("infopaul",snapshot.getChildren().toString());
+
+                //Toast.makeText(getContext(),snapshot.getChildren().toString(),Toast.LENGTH_SHORT).show();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    workout drawingInfo = dataSnapshot.getValue(workout.class);
+                    Log.d("infopaul",drawingInfo.toString());
+                    if (drawingInfo != null) {
+                        data.add(drawingInfo);
+                        Toast.makeText(getContext(),drawingInfo.getName().toString(),Toast.LENGTH_SHORT).show();
+
+                        Log.d("infopaul", drawingInfo.getName());
+                    }
+
+                    Toast.makeText(getContext(),data.size()+"",Toast.LENGTH_SHORT).show();
+                }
+
+                //Log.d("Normal data size", data.get(0).getImageurl() + "");
+                adapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to fetch data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         weight_recycle.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         weight_recycle.setAdapter(adapter);
