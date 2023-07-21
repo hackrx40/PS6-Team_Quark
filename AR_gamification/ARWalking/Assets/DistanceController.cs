@@ -37,9 +37,42 @@ public class DistanceController : MonoBehaviour
     void Update()
     {
         position = user.position;
-        timer += Time.deltaTime;                                       
+        timer += Time.deltaTime;                                        
         int_timer = (int)timer;
 
+        if (start == int_timer)
+        {
+            start++;
+            position_list.Add(position);                                
+            lineRenderer.positionCount = position_list.Count;
+
+            if (start != 2)                                            
+            {
+                lineRenderer.SetPosition(k, position_list[position_list.Count - 1]);
+                lineRenderer.SetPosition(k + 1, position_list[position_list.Count - 2]);
+                k++;
+
+                i = position_list.Count - 1;
+                virtual_distance = DistanceBetweenPoints(position_list, i, i - 1);
+                distance += virtual_distance;
+                //distance *= 0.201078457f;
+                real_distance = distance * 3.709071692f;                
+                int_distance = (int)real_distance;
+
+                distance_on_screen.text = "Distance: " + int_distance.ToString() + "m";
+            }
+
+            RewardHandler();
+
+
+        }
+    }
+
+    float DistanceBetweenPoints(List<Vector3> position_list, int a, int b)
+    {
+        return Mathf.Sqrt(((position_list[a].x - position_list[b].x) * (position_list[a].x - position_list[b].x)) +
+                    ((position_list[a].y - position_list[b].y) * (position_list[a].y - position_list[b].y)) +
+                    ((position_list[a].z - position_list[b].z) * (position_list[a].z - position_list[b].z)));
     }
 
    
