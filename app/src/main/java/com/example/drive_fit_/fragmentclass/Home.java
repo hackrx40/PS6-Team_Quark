@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.drive_fit_.R;
@@ -110,6 +112,23 @@ public class Home extends Fragment {
                 startActivity(i);
             }
         });
+
+        RelativeLayout walkingAR = v.findViewById(R.id.mid);
+        walkingAR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage("com.DefaultCompany.Test");
+                if (launchIntent != null) {
+                    Toast.makeText(getContext(), "Starting Please wait...", Toast.LENGTH_SHORT).show();
+                    startActivity(launchIntent);//null pointer check in case package name was not found
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Null package name", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         ArrayList<workout> data = new ArrayList<>();
         adapter = new weight_train_adapter(dataque_task(), getContext(), data);

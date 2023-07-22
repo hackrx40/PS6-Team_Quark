@@ -2,65 +2,61 @@ package com.example.drive_fit_.activityclass;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.drive_fit_.R;
-import com.example.drive_fit_.utils.DriveScore;
+import com.example.drive_fit_.modelClass.SpeedLimitResponse;
+import com.example.drive_fit_.utils.ApiClient;
+import com.example.drive_fit_.utils.ApiService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class StartDrive extends AppCompatActivity {
-
-    DriveScore DS;
-    SensorManager sensorManager;
-    Sensor counterSensor;
-    Sensor gyroSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_drive);
 
-        DS = new DriveScore(this);
-        sensorManager = DS.getSensorManager();
-        counterSensor = DS.getCounterSensor();
-        gyroSensor = DS.getGyroSensor();
+        double latitude = 18.687516044760738; // Replace with your latitude
+        double longitude = 73.71988688274719; // Replace with your longitude
 
-    }
+        String apiKey = "AqTzJNBoktCvRdDUNRqy71p7d00xw2-LOoTwvqSZbOWZMvnO-veTXCfNDpEJCtCn";
+        String points = "18.687508,73.719880;18.677573,73.723903";
+        boolean includeSpeedLimit = true;
+        String speedUnit = "KPH";
+        String travelMode = "driving";
 
-    @Override
-    protected void onPause() {
-
-        super.onPause();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)!=null)
-        {
-            sensorManager.unregisterListener((SensorEventListener) this, counterSensor);
-        }
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)!=null)
-        {
-            sensorManager.unregisterListener((SensorEventListener) this, gyroSensor);
-        }
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)!=null)
-        {
-            Toast.makeText(this,"registered", Toast.LENGTH_SHORT).show();
-            sensorManager.registerListener((SensorEventListener) this,counterSensor,SensorManager.SENSOR_DELAY_NORMAL);
-        }
-
-        if(sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)!=null)
-        {
-            sensorManager.registerListener((SensorEventListener) this, gyroSensor, SensorManager.SENSOR_DELAY_NORMAL);
-
-        }
+        ApiService apiService = ApiClient.getApiService();
+        Call<SpeedLimitResponse> call = apiService.getData(points, includeSpeedLimit, speedUnit, travelMode, apiKey);
 
 
+        call.enqueue(new Callback<SpeedLimitResponse>() {
+            @Override
+            public void onResponse(Call<SpeedLimitResponse> call, Response<SpeedLimitResponse> response) {
+                if (response.isSuccessful()) {
+                    SpeedLimitResponse apiResponse = response.body();
+                    if (apiResponse != null) {
+                        float responseData = apiResponse.getResponseData();
+                        Log.d("network",apiResponse+"");
+                        Toast.makeText(getApplicationContext(),responseData+"",Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Handle null response
+                    }
+                } else {
+                    // Handle API error
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SpeedLimitResponse> call, Throwable t) {
+                Log.d("network",t.toString());
+            }
+        });
 
     }
 
