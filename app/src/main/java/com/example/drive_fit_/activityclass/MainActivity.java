@@ -5,16 +5,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.drive_fit_.R;
+import com.example.drive_fit_.TripActivity;
 import com.example.drive_fit_.fragmentclass.Bazaar;
 import com.example.drive_fit_.fragmentclass.Community;
 import com.example.drive_fit_.fragmentclass.Home;
 import com.example.drive_fit_.fragmentclass.Profile;
 import com.example.drive_fit_.fragmentclass.drive_dashboard;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         ImageView bazaarbtn = (ImageView) findViewById(R.id.shopbtn);
         ImageView communitybtn = (ImageView) findViewById(R.id.commbtn);
         ImageView userbtn = (ImageView) findViewById(R.id.userbtn);
+
+        FloatingActionButton fbtn = (FloatingActionButton) findViewById(R.id.addbtn);
 
         int soumen = 9;
 
@@ -97,5 +102,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this, TripActivity.class);
+                startActivity(it);
+            }
+        });
     }
 }
