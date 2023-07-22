@@ -383,6 +383,12 @@
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barcharthours"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
                     </LinearLayout>
 
 
@@ -418,6 +424,12 @@
                             android:text="60 Heart Rate"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barChartheart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
 
 
                     </LinearLayout>

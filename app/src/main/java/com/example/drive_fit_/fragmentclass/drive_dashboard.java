@@ -3,6 +3,7 @@ package com.example.drive_fit_.fragmentclass;
 import static android.content.Context.SENSOR_SERVICE;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -23,13 +24,22 @@ import android.widget.Toast;
 import com.example.drive_fit_.R;
 import com.example.drive_fit_.activityclass.Rewards;
 import com.example.drive_fit_.activityclass.StartDrive;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link drive_dashboard#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class drive_dashboard extends Fragment implements SensorEventListener {
+public class drive_dashboard extends Fragment {
     
     TextView AccX, AccY, AccZ;
     LinearLayout startDrive;
@@ -80,16 +90,6 @@ public class drive_dashboard extends Fragment implements SensorEventListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_drive_dashboard, container, false);
 
-
-        Rewards = view.findViewById(R.id.rewards);
-        Rewards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(),Rewards.class);
-                startActivity(i);
-            }
-        });
-
         startDrive = view.findViewById(R.id.startDrive);
         startDrive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,90 +99,135 @@ public class drive_dashboard extends Fragment implements SensorEventListener {
             }
         });
 
-        SensorManager sensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
-        if(sensorManager!=null)
-        {
-            Sensor acceleroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            Sensor gyroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-            Sensor stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            if(acceleroSensor!=null)
-            {
-                sensorManager.registerListener(this,acceleroSensor,SensorManager.SENSOR_DELAY_NORMAL);
-            }
 
-            if(gyroSensor!=null)
-            {
-                sensorManager.registerListener(this,gyroSensor,SensorManager.SENSOR_DELAY_NORMAL);
-            }
+        BarChart accbar = view.findViewById(R.id.accbar);
+        List<BarEntry> entriesAcc = new ArrayList<>();
+        entriesAcc.add(new BarEntry(0f, 500f));
+        entriesAcc.add(new BarEntry(1f, 750f));
+        entriesAcc.add(new BarEntry(2f, 1000f));
+        BarDataSet dataSettime = new BarDataSet(entriesAcc, "Bar Data Set");
+        dataSettime.setColors(new int[]{Color.parseColor("#CDDC39"),Color.parseColor("#FFC107"), Color.parseColor("#FF5722")});
+        //dataSet.setBarRadius(15f);
 
-            if(stepSensor!=null)
-            {
-                sensorManager.registerListener(this,stepSensor,SensorManager.SENSOR_DELAY_NORMAL);
-            }
-        }
-        else
-        {
-            Toast.makeText(getActivity(),"Sensor Not Detected",Toast.LENGTH_SHORT).show();
-        }
+        BarData barDatatime = new BarData(dataSettime);
+        barDatatime.setBarWidth(0.5f);
+
+        accbar.setData(barDatatime);
+        accbar.setDrawGridBackground(false);
+        accbar.getDescription().setEnabled(false);
+        accbar.getLegend().setEnabled(false);
+        accbar.setTouchEnabled(false);
+
+        XAxis xAxistime = accbar.getXAxis();
+        xAxistime.setGranularity(1f);
+        xAxistime.setDrawAxisLine(false);
+        xAxistime.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxistime.setDrawGridLines(false);
+        xAxistime.setAxisMaximum(3.5f); // Adjust maximum value on x-axis
+        xAxistime.setAxisMinimum(-0.5f);
+
+        YAxis leftAxistime = accbar.getAxisLeft();
+        leftAxistime.setDrawAxisLine(false);
+        leftAxistime.setDrawGridLines(false);
+        leftAxistime.setAxisMinimum(0f);
+        leftAxistime.setAxisMaximum(1000f); // Adjust maximum value on y-axis
+
+        YAxis rightAxistime = accbar.getAxisRight();
+        rightAxistime.setDrawAxisLine(false);
+        rightAxistime.setDrawGridLines(false);
+        rightAxistime.setDrawLabels(false);
+
+        accbar.invalidate();
+
+
+
+//        BarChart gyrobar = view.findViewById(R.id.gyrobar);
+//        List<BarEntry> entriesGyro = new ArrayList<>();
+//        entriesGyro.add(new BarEntry(0f, 500f));
+//        entriesGyro.add(new BarEntry(1f, 750f));
+//        entriesGyro.add(new BarEntry(2f, 1000f));
+//        BarDataSet dataSettimeGyro = new BarDataSet(entriesGyro, "Bar Data Set");
+//        dataSettimeGyro.setColors(new int[]{Color.parseColor("#CDDC39"),Color.parseColor("#FFC107"), Color.parseColor("#FF5722")});
+//        //dataSet.setBarRadius(15f);
+//
+//        BarData barDatatimeGyro = new BarData(dataSettimeGyro);
+//        barDatatimeGyro.setBarWidth(0.5f);
+//
+//        gyrobar.setData(barDatatimeGyro);
+//        gyrobar.setDrawGridBackground(false);
+//        gyrobar.getDescription().setEnabled(false);
+//        gyrobar.getLegend().setEnabled(false);
+//        gyrobar.setTouchEnabled(false);
+//
+//        XAxis xAxistimeGyro = gyrobar.getXAxis();
+//        xAxistimeGyro.setGranularity(1f);
+//        xAxistimeGyro.setDrawAxisLine(false);
+//        xAxistimeGyro.setPosition(XAxis.XAxisPosition.BOTTOM);
+//        xAxistimeGyro.setDrawGridLines(false);
+//        xAxistimeGyro.setAxisMaximum(3.5f); // Adjust maximum value on x-axis
+//        xAxistimeGyro.setAxisMinimum(-0.5f);
+//
+//        YAxis leftAxistimegyro = gyrobar.getAxisLeft();
+//        leftAxistimegyro.setDrawAxisLine(false);
+//        leftAxistimegyro.setDrawGridLines(false);
+//        leftAxistimegyro.setAxisMinimum(0f);
+//        leftAxistimegyro.setAxisMaximum(1000f); // Adjust maximum value on y-axis
+//
+//        YAxis rightAxistimegyro = gyrobar.getAxisRight();
+//        rightAxistimegyro.setDrawAxisLine(false);
+//        rightAxistimegyro.setDrawGridLines(false);
+//        rightAxistimegyro.setDrawLabels(false);
+//
+//        accbar.invalidate();
+
+
+
+        BarChart stepbar = view.findViewById(R.id.stepbar);
+        List<BarEntry> entriesstep = new ArrayList<>();
+        entriesstep.add(new BarEntry(0f, 500f));
+        entriesstep.add(new BarEntry(1f, 750f));
+        entriesstep.add(new BarEntry(2f, 1000f));
+        BarDataSet dataSettimebar = new BarDataSet(entriesstep, "Bar Data Set");
+        dataSettimebar.setColors(new int[]{Color.parseColor("#CDDC39"),Color.parseColor("#FFC107"), Color.parseColor("#FF5722")});
+        //dataSet.setBarRadius(15f);
+
+        BarData barDatatimebar = new BarData(dataSettime);
+        barDatatimebar.setBarWidth(0.5f);
+
+        stepbar.setData(barDatatime);
+        stepbar.setDrawGridBackground(false);
+        stepbar.getDescription().setEnabled(false);
+        stepbar.getLegend().setEnabled(false);
+        stepbar.setTouchEnabled(false);
+
+        XAxis xAxistimestep = stepbar.getXAxis();
+        xAxistimestep.setGranularity(1f);
+        xAxistimestep.setDrawAxisLine(false);
+        xAxistimestep.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxistimestep.setDrawGridLines(false);
+        xAxistimestep.setAxisMaximum(3.5f); // Adjust maximum value on x-axis
+        xAxistimestep.setAxisMinimum(-0.5f);
+
+        YAxis leftAxistimestep = stepbar.getAxisLeft();
+        leftAxistimestep.setDrawAxisLine(false);
+        leftAxistimestep.setDrawGridLines(false);
+        leftAxistimestep.setAxisMinimum(0f);
+        leftAxistimestep.setAxisMaximum(1000f); // Adjust maximum value on y-axis
+
+        YAxis rightAxistimestep = stepbar.getAxisRight();
+        rightAxistimestep.setDrawAxisLine(false);
+        rightAxistimestep.setDrawGridLines(false);
+        rightAxistimestep.setDrawLabels(false);
+
+        stepbar.invalidate();
+
+
+
 
         return view;
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if(event.sensor.getType()== Sensor.TYPE_ACCELEROMETER)
-        {
-            AccX =  getView().findViewById(R.id.id_accelerationX);
-            AccX.setText("X: " +event.values[0]);
-//            Log.d("tejash",event.values[0]+" ");
-//            Toast.makeText(getActivity(),AccX+"X_Axis",Toast.LENGTH_SHORT).show();
 
-            AccY =  getView().findViewById(R.id.id_accelerationY);
-            AccY.setText("Y: " +event.values[1]);
-//            Log.d("tejash",event.values[1]+" ");
-
-            AccZ = getView().findViewById(R.id.id_accelerationZ);
-            AccZ.setText("Z: " +event.values[2]);
-            Log.d("tejash_Acc","X axis: "+event.values[0]+", Y axis: "+ event.values[1]+ ", Z axis: "+ event.values[2]);
-        }
-
-        if(event.sensor.getType()== Sensor.TYPE_GYROSCOPE)
-        {
-            AccX =  getView().findViewById(R.id.id_gyroX);
-            AccX.setText("X: " +event.values[0]);
-//            Log.d("tejash",event.values[0]+" ");
-//            Toast.makeText(getActivity(),AccX+"X_Axis",Toast.LENGTH_SHORT).show();
-
-            AccY =  getView().findViewById(R.id.id_gyroY);
-            AccY.setText("Y: " +event.values[1]);
-//            Log.d("tejash",event.values[1]+" ");
-
-            AccZ = getView().findViewById(R.id.id_gyroZ);
-            AccZ.setText("Z: " +event.values[2]);
-            Log.d("tejash_gyro","X axis: "+event.values[0]+", Y axis: "+ event.values[1]+ ", Z axis: "+ event.values[2]);
-        }
-
-        if(event.sensor.getType()== Sensor.TYPE_STEP_COUNTER)
-        {
-            AccX =  getView().findViewById(R.id.id_steps);
-//            AccX.setText("X: " +event.values[0]);
-////            Log.d("tejash",event.values[0]+" ");
-////            Toast.makeText(getActivity(),AccX+"X_Axis",Toast.LENGTH_SHORT).show();
-//
-//            AccY =  getView().findViewById(R.id.id_gyroY);
-//            AccY.setText("Y: " +event.values[1]);
-////            Log.d("tejash",event.values[1]+" ");
-//
-//            AccZ = getView().findViewById(R.id.id_gyroZ);
-//            AccZ.setText("Z: " +event.values[2]);
-            Log.d("tejash_steps","X axis: "+event.values[0]);
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
 
 
 }

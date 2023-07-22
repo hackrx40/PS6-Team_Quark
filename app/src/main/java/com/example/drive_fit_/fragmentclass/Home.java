@@ -1,8 +1,10 @@
 package com.example.drive_fit_.fragmentclass;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.drive_fit_.R;
+import com.example.drive_fit_.activityclass.Rewards;
 import com.example.drive_fit_.adapterClass.weight_train_adapter;
 import com.example.drive_fit_.adapterClass.yoga_adapter;
 import com.example.drive_fit_.modelClass.weight_train;
@@ -98,6 +101,15 @@ public class Home extends Fragment {
 
         weight_recycle = (RecyclerView) v.findViewById(R.id.homeworkout_recycler);
         snap.attachToRecyclerView(weight_recycle);
+
+        CardView Rewards = v.findViewById(R.id.rewards);
+        Rewards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Rewards.class);
+                startActivity(i);
+            }
+        });
 
         ArrayList<workout> data = new ArrayList<>();
         adapter = new weight_train_adapter(dataque_task(), getContext(), data);
