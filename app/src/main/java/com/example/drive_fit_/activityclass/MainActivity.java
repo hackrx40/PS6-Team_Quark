@@ -96,6 +96,5 @@ public class MainActivity extends AppCompatActivity {
                 userbtn.setImageResource(R.drawable.usercolor);
             }
         });
-
     }
 }

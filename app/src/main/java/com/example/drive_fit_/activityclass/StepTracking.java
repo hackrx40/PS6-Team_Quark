@@ -117,7 +117,6 @@ public class StepTracking extends AppCompatActivity implements SensorEventListen
         {
             gyroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         }
-
     }
 
 

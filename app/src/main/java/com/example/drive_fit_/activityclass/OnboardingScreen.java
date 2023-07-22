@@ -176,8 +176,5 @@ public class OnboardingScreen extends AppCompatActivity {
 
 
 
-
-
-
     }
 }
